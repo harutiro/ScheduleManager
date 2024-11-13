@@ -22,7 +22,7 @@
         </form>
         @else
         <a class="nav-item nav-link" href="{{route("login")}}">ログイン</a>
-        <!-- <a class="nav-item nav-link" href="{{route("login")}}">ユーザー登録</a> -->
+        <a class="nav-item nav-link" href="{{route("register")}}">ユーザー登録</a>
         @endif
     </div>
 </nav>
