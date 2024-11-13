@@ -15,6 +15,8 @@ Route::post('/schedule/store', [ScheduleController::class, 'exeStore'])->name('S
 
 // スケジュール編集画面
 Route::get('/schedule/edit/{id}', [ScheduleController::class, 'showEdit'])->name('ScheduleEdit');
+// スケジュール編集処理
+Route::post('/schedule/update', [ScheduleController::class, 'exeUpdate'])->name('ScheduleUpdate');
 
 
 // スケジュール詳細画面

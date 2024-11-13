@@ -71,4 +71,43 @@ class ScheduleController extends Controller
         \Session::flash('err_msg', '予定を登録しました');
         return redirect(route('ScheduleList'));
     }
+
+
+    /**
+     * 予定編集画面を表示
+     */
+    public function showEdit($id)
+    {
+        $schedule = Schedule::find($id);
+        if (is_null($schedule)) {
+            \Session::flash('err_msg', 'データがありません');
+            return redirect(route('ScheduleList'));
+        }
+        return view('schedule.edit', ['schedule' => $schedule]);
+    }
+
+    /**
+     * 予定編集処理
+     */
+    public function exeUpdate(ScheduleRequest $request)
+    {
+        $inputs = $request->all();
+        \DB::beginTransaction();
+        try {
+            $schedule = Schedule::find($inputs['id']);
+            $schedule->fill([
+                'title' => $inputs['title'],
+                'description' => $inputs['description'],
+                'start' => $inputs['start'],
+                'end' => $inputs['end'],
+            ]);
+            $schedule->save();
+            \DB::commit();
+        } catch (\Throwable $e) {
+            \DB::rollback();
+            abort(500);
+        }
+        \Session::flash('err_msg', '予定を更新しました');
+        return redirect(route('ScheduleList'));
+    }
 }
