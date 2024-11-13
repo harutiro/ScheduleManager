@@ -28,10 +28,32 @@
                     <a href="{{ route('ScheduleEdit', ['id' => $schedule->id]) }}">
                         <i class="fas fa-edit p-3"></i>
                     </a>
+                    <!-- 削除はアイコンでpostを送る -->
+                    <form 
+                        method="POST" 
+                        action="{{ route('ScheduleDelete', ['id' => $schedule->id]) }}"
+                        onsubmit="return checkDelete()">
+                        @csrf
+                        <button
+                            type="submit"
+                            style="background: transparent; border: none; color: #007bff;"
+                            onclick="">
+                            <i class="fas fa-trash-alt p-3"></i>
+                        </button>
+                    </form>
                 </td>
             </tr>
             @endforeach
         </table>
     </div>
 </div>
+<script>
+    function checkDelete() {
+        if (window.confirm('消去してよろしいですか？')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 @endsection

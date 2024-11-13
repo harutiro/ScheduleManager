@@ -110,4 +110,22 @@ class ScheduleController extends Controller
         \Session::flash('err_msg', '予定を更新しました');
         return redirect(route('ScheduleList'));
     }
+
+    /**
+     * 予定削除処理
+     */
+    public function exeDelete($id)
+    {
+        if (empty($id)) {
+            \Session::flash('err_msg', 'データがありません');
+            return redirect(route('ScheduleList'));
+        }
+        try {
+            Schedule::destroy($id);
+        } catch (\Throwable $e) {
+            abort(500);
+        }
+        \Session::flash('err_msg', '削除しました');
+        return redirect(route('ScheduleList'));
+    }
 }

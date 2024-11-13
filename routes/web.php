@@ -18,6 +18,9 @@ Route::get('/schedule/edit/{id}', [ScheduleController::class, 'showEdit'])->name
 // スケジュール編集処理
 Route::post('/schedule/update', [ScheduleController::class, 'exeUpdate'])->name('ScheduleUpdate');
 
+// スケジュール削除処理
+Route::post('/schedule/delete/{id}', [ScheduleController::class, 'exeDelete'])->name('ScheduleDelete');
+
 
 // スケジュール詳細画面
 Route::get('/schedule/{id}', [ScheduleController::class, 'showDetail'])->name('ScheduleDetail');
