@@ -42,8 +42,6 @@ php artisan make:factory ScheduleFactory
 php artisan db:seed
 ```
 
-
-
 # コントローラー関係
 
 ### コントローラーの作成
@@ -57,4 +55,10 @@ php artisan make:controller ScheduleController
 composer dump-autoload
 php artisan config:clear
 ```
+
+# QA
+
+### もしMAMPで実験をしているのに、ルーティングがうまくいかず404エラーになったら
+以下の記事を読んでApacheの設定を確認しましょう
+https://qiita.com/denbnddb/items/46fc6a8477abf7b405fc
 
