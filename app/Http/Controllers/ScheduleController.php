@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Models\Schedule;
 use App\Http\Requests\ScheduleRequest;
+use Carbon\Carbon;
 
 class ScheduleController extends Controller
 {
@@ -125,5 +126,26 @@ class ScheduleController extends Controller
         }
         \Session::flash('err_msg', '削除しました');
         return redirect(route('ScheduleList'));
+    }
+
+    /**
+     * 週間スケジュール画面を表示
+     */
+    public function showWeek()
+    {
+        $userId = Auth::id();
+        $startOfWeek = Carbon::now()->startOfWeek();
+        $endOfWeek = Carbon::now()->endOfWeek();
+
+        $schedules = Schedule::where('user_id', $userId)
+            ->whereBetween('start', [$startOfWeek, $endOfWeek])
+            ->orderBy('start')
+            ->get();
+
+        return view('schedule.week', [
+            'schedules' => $schedules,
+            'startOfWeek' => $startOfWeek,
+            'endOfWeek' => $endOfWeek,
+        ]);
     }
 }
