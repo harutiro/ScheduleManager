@@ -15,14 +15,12 @@ class ScheduleController extends Controller
      */
     public function showList()
     {
-        $schedules = Schedule::all();
+        $userId = Auth::id();
+        $schedules = Schedule::where('user_id', $userId)->get();
 
-        return view(
-            'schedule.list',
-            [
-                'schedules' => $schedules
-            ]
-        );
+        return view('schedule.list', [
+            'schedules' => $schedules
+        ]);
     }
 
     /**
@@ -30,7 +28,7 @@ class ScheduleController extends Controller
      */
     public function showDetail($id)
     {
-        $schedule = Schedule::find($id);
+        $schedule = Schedule::where('id', $id)->where('user_id', Auth::id())->first();
         if (is_null($schedule)) {
             \Session::flash('err_msg', 'データがありません');
             return redirect(route('ScheduleList'));
