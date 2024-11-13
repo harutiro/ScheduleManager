@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Schedule;
 
 class ScheduleController extends Controller
 {
@@ -12,6 +13,13 @@ class ScheduleController extends Controller
      */
     public function showList()
     {
-        return view('schedule.list');
+        $schedules = Schedule::all();
+
+        return view(
+            'schedule.list',
+            [
+                'schedules' => $schedules
+            ]
+        );
     }
 }
