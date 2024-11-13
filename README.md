@@ -49,6 +49,12 @@ php artisan db:seed
 php artisan make:controller ScheduleController
 ```
 
+# フォーム関係
+
+### フォームの作成
+```bash
+php artisan make:request ScheduleRequest
+```
 
 # 事故った時に使うもの
 ```bash
