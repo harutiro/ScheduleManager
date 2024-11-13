@@ -25,6 +25,24 @@ php artisan migrate
 php artisan make:model Schedule
 ```
 
+# シード関係
+
+### シードデータを作成
+```bash
+php artisan make:seeder SchedulesTableSeede
+```
+
+### ファクトリーの作成
+```bash
+php artisan make:factory ScheduleFactory
+```
+
+### シードの呼び出し
+```bash
+php artisan db:seed
+```
+
+
 
 # コントローラー関係
 
@@ -32,3 +50,11 @@ php artisan make:model Schedule
 ```bash
 php artisan make:controller ScheduleController
 ```
+
+
+# 事故った時に使うもの
+```bash
+composer dump-autoload
+php artisan config:clear
+```
+
