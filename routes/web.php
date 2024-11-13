@@ -13,5 +13,9 @@ Route::get('/schedule/create', [ScheduleController::class, 'showCreate'])->name(
 Route::post('/schedule/store', [ScheduleController::class, 'exeStore'])->name('ScheduleStore');
 
 
+// スケジュール編集画面
+Route::get('/schedule/edit/{id}', [ScheduleController::class, 'showEdit'])->name('ScheduleEdit');
+
+
 // スケジュール詳細画面
 Route::get('/schedule/{id}', [ScheduleController::class, 'showDetail'])->name('ScheduleDetail');
