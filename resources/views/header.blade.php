@@ -8,7 +8,7 @@
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href="{{route("ScheduleList")}}">全てのスケジュール <span class="sr-only"></span></a>
             <a class="nav-item nav-link" href="{{route("ScheduleWeek")}}">週間スケジュール</a>
-            <a class="nav-item nav-link" href="#">月間スケジュール</a>
+            <a class="nav-item nav-link" href="{{route("ScheduleMonth")}}">月間スケジュール</a>
             <a class="nav-item nav-link" href="{{route("ScheduleCreate")}}">新規スケジュール登録</a>
         </div>
     </div>

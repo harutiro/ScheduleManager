@@ -10,6 +10,13 @@ use Carbon\Carbon;
 
 class ScheduleController extends Controller
 {
+    /**
+     * 月間スケジュール画面を表示
+     */
+    public function showMonth()
+    {
+        return view('schedule.month');
+    }
 
     /**
      * 予定一覧画面を表示
@@ -147,5 +154,29 @@ class ScheduleController extends Controller
             'startOfWeek' => $startOfWeek,
             'endOfWeek' => $endOfWeek,
         ]);
+    }
+
+    /**
+     * イベントデータを取得
+     */
+    public function getEvents(Request $request)
+    {
+        $userId = Auth::id();
+        $start = Carbon::parse($request->start);
+        $end = Carbon::parse($request->end);
+
+        $schedules = Schedule::where('user_id', $userId)
+            ->whereBetween('start', [$start, $end])
+            ->get();
+
+        $events = $schedules->map(function ($schedule) {
+            return [
+                'title' => $schedule->title,
+                'start' => $schedule->start,
+                'end' => $schedule->end,
+            ];
+        });
+
+        return response()->json($events);
     }
 }

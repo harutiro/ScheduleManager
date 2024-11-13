@@ -16,6 +16,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [ScheduleController::class, 'showList'])->name('ScheduleList');
     Route::get('/schedule/create', [ScheduleController::class, 'showCreate'])->name('ScheduleCreate');
     Route::post('/schedule/store', [ScheduleController::class, 'exeStore'])->name('ScheduleStore');
+    Route::get('/schedule/month', [ScheduleController::class, 'showMonth'])->name('ScheduleMonth');
+    Route::get('/schedule/events', [ScheduleController::class, 'getEvents'])->name('ScheduleEvents');
     Route::get('/schedule/edit/{id}', [ScheduleController::class, 'showEdit'])->name('ScheduleEdit');
     Route::post('/schedule/update', [ScheduleController::class, 'exeUpdate'])->name('ScheduleUpdate');
     Route::post('/schedule/delete/{id}', [ScheduleController::class, 'exeDelete'])->name('ScheduleDelete');
