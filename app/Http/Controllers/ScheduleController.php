@@ -52,7 +52,7 @@ class ScheduleController extends Controller
     public function exeStore(ScheduleRequest $request)
     {
         $inputs = $request->all();
-        $userId = 1; // TODO: 仮の値
+        $userId = Auth::id();
 
         \DB::beginTransaction();
         try {

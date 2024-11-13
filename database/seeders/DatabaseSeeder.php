@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use function Laravel\Prompts\password;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,8 +16,11 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
         User::firstOrCreate(
-            ['email' => 'test@example.com'],
-            ['name' => 'Test User']
+            ['email' => 'test2@hogehoge.com'],
+            [
+                'name' => 'Testだよ',
+                'password' => password('password')
+            ]
         );
 
         $this->call([
