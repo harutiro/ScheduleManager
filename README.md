@@ -16,3 +16,9 @@ php artisan make:migration create_schedules_table
 ```bash
 php artisan migrate
 ```
+
+### モデルの作成方法
+
+```bash
+php artisan make:model Schedule
+```
