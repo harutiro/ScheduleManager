@@ -17,8 +17,18 @@ php artisan make:migration create_schedules_table
 php artisan migrate
 ```
 
+# モデル関係
+
 ### モデルの作成方法
 
 ```bash
 php artisan make:model Schedule
+```
+
+
+# コントローラー関係
+
+### コントローラーの作成
+```bash
+php artisan make:controller ScheduleController
 ```
