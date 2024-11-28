@@ -10,6 +10,10 @@
                 <td>{{ $schedule->title }}</td>
             </tr>
             <tr>
+                <th>場所</th>
+                <td>{{ $schedule->place }}</td>
+            </tr>
+            <tr>
                 <th>開始日時</th>
                 <td>{{ $schedule->start }}</td>
             </tr>

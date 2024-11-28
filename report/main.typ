@@ -1,8 +1,8 @@
 #import "./template.typ": report, code-info
 #show: report.with(
   title: [
-    #text(font: "Noto Emoji")[#emoji.crab] \
-    Webプログラミング及び演習
+    Webプログラミング及び演習 \
+    #text(size: 25pt)[スケジュール管理アプリの作成] \
   ],
   author: [
     情報科学部 情報科学科 コンピュータシステム専攻 \
@@ -137,6 +137,28 @@ FullCalendarの利用により、カレンダー表示が直感的で視認性�
 
 これらのテーブルは、Laravelのマイグレーション機能を使用して定義・生成する。マイグレーションにより、データベースの構造を簡単に管理・変更できるため、開発中の仕様変更にも柔軟に対応可能となる。
 
+== ER図
+以下のER図は、UsersテーブルとSchedulesテーブルの関係を示す。UsersテーブルとSchedulesテーブルは、user_idを外部キーとして関連付けられている。
+
+#figure(image("./images/ER図.png"),
+  caption: [
+    ER図
+  ]
+)<image:ER図>
+
+ER図に示す通り、UsersテーブルとSchedulesテーブルは1対多の関係にある。これにより、1人のユーザーが複数のスケジュールを持つことができる。
+以下の様に、UsersテーブルとSchedulesテーブルのマイグレーションファイルとモデルファイルを作成し、データベースの設計を行った。
++ USER テーブル:
+  主キー (id) を持ち、ユーザーの基本情報 (名前、メールアドレス、パスワードなど) を管理する。
+  時間情報は timestamps (作成日時と更新日時) に含まれる。
++ SCHEDULE テーブル:
+  主キー (id) と外部キー (user_id) を持つ。
+  ユーザーが作成したスケジュールの詳細 (タイトル、説明、場所、開始日時、終了日時) を保持する。
+  外部キー user_id は、どのユーザーがこのスケジュールを作成したのかを示す。
++ リレーション:
+  USER は多くの SCHEDULE を持つことができる (has many)。
+  SCHEDULE は1つの USER に属す。
+
 == マイグレーションファイル
 Laravelでは、マイグレーションファイルを用いてデータベースのテーブル構造をプログラムで定義する。
 以下は、SchedulesテーブルとUsersテーブルのマイグレーションファイルの一部を示す @code:マイグレーションSchedules @code:マイグレーションUsers。
@@ -172,6 +194,7 @@ return new class extends Migration
                 $table->foreignId('user_id')->constrained()->cascadeOnDelete();
                 $table->string('title');
                 $table->text('description')->nullable();
+                $table->string('place')->nullable();
                 $table->dateTime('start');
                 $table->dateTime('end');
                 $table->timestamps();

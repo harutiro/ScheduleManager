@@ -20,6 +20,7 @@ class Schedule extends Model
         'user_id',
         'title',
         'description',
+        'place',
         'start',
         'end',
     ];

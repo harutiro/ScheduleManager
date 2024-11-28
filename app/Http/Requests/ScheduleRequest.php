@@ -24,6 +24,7 @@ class ScheduleRequest extends FormRequest
         return [
             'title' => 'required|max:100',
             'description' => 'required',
+            'place' => 'required',
             'start' => 'required|date',
             'end' => 'required|date|after:start',
         ];

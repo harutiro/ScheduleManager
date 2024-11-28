@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Schedule;
 use App\Http\Requests\ScheduleRequest;
 use Carbon\Carbon;
+use Log;
 
 class ScheduleController extends Controller
 {
@@ -65,6 +66,7 @@ class ScheduleController extends Controller
             Schedule::create([
                 'title' => $inputs['title'],
                 'description' => $inputs['description'],
+                'place' => $inputs['place'],
                 'start' => $inputs['start'],
                 'end' => $inputs['end'],
                 'user_id' => $userId,
@@ -72,6 +74,7 @@ class ScheduleController extends Controller
             \DB::commit();
         } catch (\Throwable $e) {
             \DB::rollback();
+            \Log::error($e);
             abort(500);
         }
         \Session::flash('err_msg', '予定を登録しました');
@@ -104,6 +107,7 @@ class ScheduleController extends Controller
             $schedule->fill([
                 'title' => $inputs['title'],
                 'description' => $inputs['description'],
+                'place' => $inputs['place'],
                 'start' => $inputs['start'],
                 'end' => $inputs['end'],
             ]);

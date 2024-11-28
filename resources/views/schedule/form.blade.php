@@ -31,6 +31,17 @@
                 @endif
             </div>
             <div class="form-group">
+                <label for="place   ">
+                    場所
+                </label>
+                <input id="place" name="place" class="form-control" value="{{ old('place') }}" type="text">
+                @if ($errors->has('place'))
+                    <div class="text-danger">
+                        {{ $errors->first('place') }}
+                    </div>
+                @endif
+            </div>
+            <div class="form-group">
                 <label for="start">
                     開始日
                 </label>
